@@ -1,21 +1,26 @@
 <script>
-  export let todos = [];
+  // @ts-nocheck
+  let todos = [{ id: 0, title: "Hello, World!", done: true }];
 
-  let toggleTodo = (id) => {
-    const todo = todos.find((unit) => (unit.id = id));
+  const toggleTodo = (id) => {
+    const todo = todos.find((unit) => unit.id === id);
     todo.done = !todo.done;
+
+    todos = todos;
   };
 
-  let addTodo = (event) => {
+  const addTodo = (event) => {
     const data = new FormData(event.target);
     event.target.reset();
 
-    console.warn({ todos });
-    todos.push({
-      id: todos.length,
-      title: data.get("todo"),
-      done: false,
-    });
+    todos = [
+      ...todos,
+      {
+        id: todos.length,
+        title: data.get("todo"),
+        done: false,
+      },
+    ];
   };
 </script>
 
