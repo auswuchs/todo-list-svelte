@@ -10,6 +10,18 @@
 
   <TodoList let:todos let:toggleTodo let:addTodo>
     <ul class="list">
+      {#each todos as todo}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <li
+          class="list-todo"
+          class:border-green-600={todo.done}
+          class:text-green-600={todo.done}
+          on:click={toggleTodo(todo.id)}
+        >
+          {todo.title}
+        </li>
+      {/each}
+
       <form on:submit|preventDefault={addTodo} class="todo-form">
         <input
           type="text"
@@ -19,20 +31,6 @@
           placeholder="New Todo"
         />
       </form>
-
-      {#each todos as todo}
-        <li class="list-todo">
-          <input
-            type="checkbox"
-            class="accent-slate-600"
-            class:border-green={todo.done}
-            class:text-green={todo.done}
-            value={todo.done}
-            on:change={toggleTodo(todo.id)}
-          />
-          {todo}
-        </li>
-      {/each}
     </ul>
   </TodoList>
 </main>
@@ -47,7 +45,7 @@
   }
 
   .list-todo {
-    @apply col-span-4 p-4 py-8 text-center border-2 rounded cursor-pointer;
+    @apply col-span-4 p-4 py-8 text-center border-2 rounded cursor-pointer accent-slate-400;
   }
 
   .todo-form {
