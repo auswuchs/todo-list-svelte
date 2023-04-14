@@ -8,7 +8,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,8 +15,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  @apply bg-gray-950
+  @apply bg-slate-200 text-slate-700 border-slate-700 
 }
+
 
 a {
   font-weight: 500;

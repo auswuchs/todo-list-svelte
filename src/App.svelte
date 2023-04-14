@@ -10,12 +10,13 @@
 
   <TodoList let:todos let:toggleTodo let:addTodo>
     <ul class="list">
-      {#each todos as todo}
+      {#each todos as todo (todo.id)}
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <li
           class="list-todo"
-          class:border-green-600={todo.done}
-          class:text-green-600={todo.done}
+          class:border-slate-700={!todo.done}
+          class:border-red-500={todo.done}
+          class:text-red-500={todo.done}
           on:click={toggleTodo(todo.id)}
         >
           {todo.title}
@@ -37,7 +38,7 @@
 
 <style>
   .heading {
-    @apply font-bold underline;
+    @apply font-bold;
   }
 
   .list {
@@ -45,14 +46,14 @@
   }
 
   .list-todo {
-    @apply col-span-4 p-4 py-8 text-center border-2 rounded cursor-pointer accent-slate-400;
+    @apply col-span-4 p-4 py-8 text-center border-2 rounded cursor-pointer;
   }
 
   .todo-form {
-    @apply col-span-4 p-4 py-8 border-2 border-dashed rounded;
+    @apply col-span-4 p-4 py-8 border-2 border-slate-700 border-dashed rounded;
   }
 
   .todo-form-input {
-    @apply bg-transparent border-b-2 outline-none w-full;
+    @apply bg-transparent border-b-2 border-slate-700 outline-none w-full;
   }
 </style>
