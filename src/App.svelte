@@ -1,5 +1,6 @@
 <script>
   // @ts-nocheck
+  import TodoCard from "./components/TodoCard.svelte";
   import TodoList from "./components/TodoList.svelte";
 
   const heading = "TodoList.svelte";
@@ -11,16 +12,7 @@
   <TodoList let:todos let:toggleTodo let:addTodo>
     <ul class="list">
       {#each todos as todo (todo.id)}
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <li
-          class="list-todo"
-          class:border-slate-700={!todo.done}
-          class:border-red-500={todo.done}
-          class:text-red-500={todo.done}
-          on:click={toggleTodo(todo.id)}
-        >
-          {todo.title}
-        </li>
+        <TodoCard {todo} on:click={toggleTodo(todo.id)} />
       {/each}
 
       <form on:submit|preventDefault={addTodo} class="todo-form">
@@ -43,10 +35,6 @@
 
   .list {
     @apply grid grid-cols-12 gap-6 mt-12;
-  }
-
-  .list-todo {
-    @apply col-span-4 p-4 py-8 text-center border-2 rounded cursor-pointer;
   }
 
   .todo-form {
